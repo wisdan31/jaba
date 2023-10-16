@@ -1,0 +1,36 @@
+<!-- index.html -->
+<form id="card-form">
+  <input type="text" name="name" placeholder="Name">
+  <input type="number" name="age" placeholder="Age">
+  <input type="number" name="gpa" placeholder="GPA" step="0.1">
+  <button type="submit">Submit</button>
+</form>
+<div style="width: 184px; height: 205px; position: relative">
+  <div style="width: 183px; height: 205px; left: 0px; top: 0px; position: absolute; background: #414361"></div>
+  <div style="left: 8px; top: 91px; position: absolute"><span style="color: white; font-size: 18px; font-family: KoHo; font-weight: 400; word-wrap: break-word">Outer Wilds<br/></span><span style="color: white; font-size: 10px; font-family: KoHo; font-weight: 400; word-wrap: break-word">Mobius Digital<br/></span><span style="color: white; font-size: 12px; font-family: KoHo; font-weight: 400; word-wrap: break-word"><br/></span><span style="color: white; font-size: 14px; font-family: KoHo; font-weight: 400; word-wrap: break-word">Game</span><span style="color: white; font-size: 12px; font-family: KoHo; font-weight: 400; word-wrap: break-word">  <br/></span><span style="color: #15F4B5; font-size: 15px; font-family: KoHo; font-weight: 400; word-wrap: break-word">Completed</span></div>
+  <img style="width: 184px; height: 86px; left: 0px; top: 0px; position: absolute" src="https://via.placeholder.com/184x86" />
+</div>
+<!-- client-side JavaScript code -->
+<script>
+  const form = document.getElementById('card-form');
+  form.addEventListener('submit', function (event){
+    event.preventDefault();
+    const { name, age, gpa } = form.elements;
+    const data = {
+      name: name.value,
+      age: parseInt(age.value),
+      gpa: parseFloat(gpa.value)
+    };
+    console.log(data);
+
+    // Move the fetch request inside the event listener function
+    fetch('/addStudent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+  });
+</script>
+
