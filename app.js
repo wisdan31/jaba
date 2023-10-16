@@ -17,7 +17,7 @@ const gameSchema = new mongoose.Schema({
   platform: String,
   status: String,
   score: String,
-  time: String, // in minutes
+  time: Number, // in minutes
 })
 
 const Game = mongoose.model('media', gameSchema); // Creating game model
