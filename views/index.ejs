@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .card {
+  background-color: #401466;
+  color: white;
+  border: 2px solid black;
+  margin: 20px;
+  padding: 20px;
+}
+table, th, td {
+  border: 3px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  background-color: #414361;
+  padding: 5px;
+}
+td {
+  font-size: 15px;
+}
+th {
+  font-size: 17px;
+}
+</style>
+  </style>
+</head>
+
+<body>
+  <style>
+    body {
+      background-color: #2a2d43 ;
+      color: white;
+    }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th>Tile</th>
+        <th>Developer</th>
+        <th>Year</th>
+        <th>Genre</th>
+        <th>Status</th>
+        <th>Your score</th>
+        <th>Time played</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% entries.forEach(entry => { %>
+        <tr>
+          <td><%= entry.title %></td>
+          <td><%= entry.developer %></td>
+          <td><%= entry.year %></td>
+          <td><%= entry.genre %></td>
+          <td><%= entry.status %></td>
+          <td><%= entry.score %></td>
+          <td><%= entry.time / 60 %>h <%= entry.time % 60 %>m</td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>
