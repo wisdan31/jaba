@@ -20,7 +20,10 @@ const gameSchema = new mongoose.Schema({
 
 const Game = mongoose.model('media', gameSchema); // Creating game model
 
+module.exports = Game; // Exporting the model
+
 app.use(express.static('public'));
+app.use(express.static(__dirname));
 app.use(express.json());
 app.set('view engine', 'ejs')
 
@@ -28,6 +31,12 @@ app.get('/', async (req, res) => {
   res.set('Content-Type', 'text/html'); 
   let entries = await Game.find();
   res.render('index.ejs', { entries: entries });
+});
+
+app.post('/add', async (req, res) => {
+  const newEntry = new Game(req.body);
+  await newEntry.save();
+  res.redirect('/');
 });
 
 app.listen(port, () => {

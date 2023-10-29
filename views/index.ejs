@@ -15,7 +15,7 @@ table, th, td {
   border-collapse: collapse;
 }
 th, td {
-  background-color: #414361;
+  background-color: #29293D;
   padding: 5px;
 }
 td {
@@ -31,7 +31,7 @@ th {
 <body>
   <style>
     body {
-      background-color: #2a2d43 ;
+      background-color: #101119 ;
       color: white;
     }
   </style>
@@ -59,7 +59,18 @@ th {
           <td><%= entry.time / 60 %>h <%= entry.time % 60 %>m</td>
         </tr>
       <% }); %>
+      <tr>
+        <td><input type="text" id="newEntryTitle"></td>
+        <td><input type="text" id="newEntryDeveloper"></td>
+        <td><input type="number" id="newEntryYear"></td>
+        <td><input type="text" id="newEntryGenre"></td>
+        <td><input type="text" id="newEntryStatus"></td>
+        <td><input type="text" id="newEntryScore"></td>
+        <td><input type="number" id="newEntryTime" placeholder="In minutes"></td>
+        <td><button id="addButton">Add</button></td>
+      </tr>
     </tbody>
   </table>
+  <script src="/eventHandler.js"></script>
 </body>
 </html>
