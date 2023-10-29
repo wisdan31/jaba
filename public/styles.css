@@ -1,0 +1,28 @@
+ .card {
+     background-color: #401466;
+     color: white;
+     border: 2px solid black;
+     margin: 20px;
+     padding: 20px;
+ }
+
+ table,
+ th,
+ td {
+     border: 3px solid black;
+     border-collapse: collapse;
+ }
+
+ th,
+ td {
+     background-color: #29293D;
+     padding: 5px;
+ }
+
+ td {
+     font-size: 15px;
+ }
+
+ th {
+     font-size: 17px;
+ }
