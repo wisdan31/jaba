@@ -6,4 +6,13 @@ const createGame = (async (req, res) => {
     res.redirect("/");
 });
 
-module.exports = { createGame };
+const deleteGame = (async (req, res) => {
+    await Game.deleteOne({ _id: req.params.id });
+    res.redirect("/");
+})
+
+module.exports =
+{
+    createGame,
+    deleteGame
+};

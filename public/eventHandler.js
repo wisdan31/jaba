@@ -29,4 +29,22 @@ function addEntry(){
     })
 }
 
+const deleteButtons = document.getElementsByClassName("deleteButton");
+Array.from(deleteButtons).forEach(button => {
+    button.addEventListener("click", () => {
+        const entryID = button.getAttribute("data-id");
+
+        try {
+            fetch("/games/delete/" + entryID, {
+                method: "DELETE"
+            }).then(() => {
+                alert("Entry deleted!");
+                location.reload();
+            })
+        } catch (error) {
+            console.error(error);
+        }
+    })
+});
+
 document.getElementById("addButton").addEventListener("click", addEntry);

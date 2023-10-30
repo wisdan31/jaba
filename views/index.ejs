@@ -34,6 +34,8 @@
           <td><%= entry.status %></td>
           <td><%= entry.score %></td>
           <td><%= parseInt(entry.time / 60) %>h <%= entry.time % 60 %>m</td>
+          <td><button class="deleteButton" data-id="<%= entry._id %>">Delete</button></td>
+          
         </tr>
       <% }); %>
       <tr>
