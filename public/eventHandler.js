@@ -1,4 +1,4 @@
-function addEntry(){
+function addEntry() {
     console.log("Adding entry...")
     const entryTitle = document.getElementById("newEntryTitle").value;
     const entryDelevoper = document.getElementById("newEntryDeveloper").value;
@@ -20,9 +20,7 @@ function addEntry(){
 
     fetch("/games/add", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json"},
         body: JSON.stringify(newEntry)
     }).then(() => {
         alert("New entry added!");
@@ -30,22 +28,24 @@ function addEntry(){
     })
 }
 
+function deleteEntry() {
+    const entryID = button.getAttribute("data-id");
+
+    try {
+        fetch("/games/delete/" + entryID, {
+            method: "DELETE"
+        }).then(() => {
+            alert("Entry deleted!");
+            location.reload();
+        })
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 const deleteButtons = document.getElementsByClassName("deleteButton");
 Array.from(deleteButtons).forEach(button => {
-    button.addEventListener("click", () => {
-        const entryID = button.getAttribute("data-id");
-
-        try {
-            fetch("/games/delete/" + entryID, {
-                method: "DELETE"
-            }).then(() => {
-                alert("Entry deleted!");
-                location.reload();
-            })
-        } catch (error) {
-            console.error(error);
-        }
-    })
+    button.addEventListener("click", deleteEntry)
 });
 
 document.getElementById("addButton").addEventListener("click", addEntry);
