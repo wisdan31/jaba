@@ -26,6 +26,7 @@ function addEntry(){
         body: JSON.stringify(newEntry)
     }).then(() => {
         alert("New entry added!");
+        location.reload();
     })
 }
 
