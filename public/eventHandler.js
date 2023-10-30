@@ -18,7 +18,7 @@ function addEntry(){
         time: entryTime
     };
 
-    fetch("/add", {
+    fetch("/games/add", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

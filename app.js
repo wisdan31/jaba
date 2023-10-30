@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const port = 3000;
+const games_routes = require("./routes/games.js");
 
 const Game = require("./models/game.js");
 
@@ -21,11 +22,7 @@ app.get("/", async (req, res) => {
   res.render("index.ejs", { entries: entries });
 });
 
-app.post("/add", async (req, res) => {
-  const newEntry = new Game(req.body);
-  await newEntry.save();
-  res.redirect("/");
-});
+app.use("/games", games_routes)
 
 app.listen(port, () => {
   console.log("Server is running on port " + port);
