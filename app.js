@@ -2,7 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const port = 3000;
+
 const games_routes = require("./routes/games.js");
+const auth_routes = require("./routes/auth.js");
+
+
+const dotenv = require("dotenv");
+dotenv.config();
+
 
 const Game = require("./models/game.js");
 
@@ -16,6 +23,10 @@ app.use(express.static("public"));
 app.use(express.json());
 app.set("view engine", "ejs");
 
+app.listen(port, () => {
+  console.log("Server is running on port " + port);
+});
+
 app.get("/", async (req, res) => {
   res.set("Content-Type", "text/html");
   let entries = await Game.find();
@@ -24,6 +35,6 @@ app.get("/", async (req, res) => {
 
 app.use("/games", games_routes)
 
-app.listen(port, () => {
-  console.log("Server is running on port " + port);
-});
+app.use("/auth", auth_routes)
+
+

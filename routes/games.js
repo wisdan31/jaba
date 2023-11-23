@@ -4,7 +4,7 @@ const router = express.Router();
 const {
     createGame,
     deleteGame
-    } = require("../controllers/games.js");
+} = require("../controllers/games.js");
 
 const Game = require("../models/game.js");
 
