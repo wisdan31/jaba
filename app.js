@@ -1,5 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const app = express();
 const port = 3000;
 
@@ -19,8 +22,8 @@ mongoose.connect("mongodb://localhost:27017/backlog", {
 }); // Making a connection with the database
 
 app.use(express.static("public"));
-
 app.use(express.json());
+app.use(cookieParser());
 app.set("view engine", "ejs");
 
 app.listen(port, () => {
