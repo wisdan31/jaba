@@ -1,4 +1,11 @@
 const Game = require("../models/game");
+const { returnUserId } = require("../services/jwt");
+
+const showGames = (async (req, res) => {
+    userId = returnUserId(req);
+    let entries = await Game.find({ user: userId });
+    res.render("index.ejs", { entries: entries });
+})
 
 const createGame = (async (req, res) => {
     const newEntry = new Game(req.body);
@@ -14,5 +21,6 @@ const deleteGame = (async (req, res) => {
 module.exports =
 {
     createGame,
-    deleteGame
+    deleteGame,
+    showGames
 };

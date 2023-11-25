@@ -10,8 +10,7 @@ const games_routes = require("./routes/games.js");
 const auth_routes = require("./routes/auth.js");
 
 
-const dotenv = require("dotenv");
-dotenv.config();
+require('dotenv').config();
 
 
 const Game = require("./models/game.js");

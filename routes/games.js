@@ -5,10 +5,15 @@ router.use(express.json());
 
 const {
     createGame,
-    deleteGame
+    deleteGame,
+    showGames
 } = require("../controllers/games.js");
 
+const { verifyToken } = require("../services/jwt.js");
+
 const Game = require("../models/game.js");
+
+router.get("/", verifyToken, showGames)
 
 router.post("/add", createGame);
 

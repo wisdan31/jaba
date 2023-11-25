@@ -8,7 +8,8 @@ router.use(express.urlencoded({ extended: true }));
 const {
     showAuthPage,
     createNewUser,
-    aunthenticateUser
+    aunthenticateUser,
+    loginUser
 } = require("../controllers/auth.js");
 
 const User = require("../models/user.js");
@@ -16,5 +17,7 @@ const User = require("../models/user.js");
 router.get("/register", showAuthPage);
 
 router.post("/register", createNewUser);
+
+router.post("/login", loginUser);
 
 module.exports = router;
