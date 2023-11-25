@@ -28,7 +28,7 @@ function addEntry() {
     })
 }
 
-function deleteEntry() {
+function deleteEntry(button) {
     const entryID = button.getAttribute("data-id");
 
     try {
@@ -45,7 +45,8 @@ function deleteEntry() {
 
 const deleteButtons = document.getElementsByClassName("deleteButton");
 Array.from(deleteButtons).forEach(button => {
-    button.addEventListener("click", deleteEntry)
+    button.addEventListener("click", () => deleteEntry(button));
 });
+
 
 document.getElementById("addButton").addEventListener("click", addEntry);
