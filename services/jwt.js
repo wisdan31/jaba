@@ -26,4 +26,14 @@ const returnUserId = (req) => {
   return decoded._id;
 }
 
-module.exports = { generateAccessToken, verifyToken, returnUserId };
+const authCheck = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    next();
+  }
+  else {
+    res.sendStatus(403);
+  }
+}
+
+module.exports = { generateAccessToken, verifyToken, returnUserId, authCheck };

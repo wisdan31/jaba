@@ -8,11 +8,14 @@ router.use(express.urlencoded({ extended: true }));
 const {
     showAuthPage,
     createNewUser,
-    aunthenticateUser,
-    loginUser
+    loginUser,
 } = require("../controllers/auth.js");
 
+const {authCheck} = require("../services/jwt.js");
+
 const User = require("../models/user.js");
+
+router.use(authCheck);
 
 router.get("/register", showAuthPage);
 
