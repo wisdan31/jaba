@@ -7,6 +7,7 @@ function addEntry() {
     const entryStatus = document.getElementById("newEntryStatus").value;
     const entryScore = document.getElementById("newEntryScore").value;
     const entryTime = document.getElementById("newEntryTime").value;
+    
 
     const newEntry = {
         title: entryTitle,

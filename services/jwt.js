@@ -20,7 +20,7 @@ const verifyToken = (req, res, next) => {
   })
 }
 
-const returnUserId = (req, res, next) => {
+const returnUserId = (req) => {
   const token = req.cookies.token;
   const decoded = jwt.decode(token);
   return decoded._id;

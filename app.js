@@ -6,6 +6,8 @@ const bcrypt = require("bcrypt");
 const app = express();
 const port = 3000;
 
+const {verifyToken} = require("./services/jwt.js");
+
 const games_routes = require("./routes/games.js");
 const auth_routes = require("./routes/auth.js");
 
@@ -30,9 +32,13 @@ app.listen(port, () => {
 });
 
 app.get("/", async (req, res) => {
-  res.set("Content-Type", "text/html");
-  let entries = await Game.find();
-  res.render("index.ejs", { entries: entries });
+  const token = req.cookies.token;
+  if (!token) {
+    res.redirect("/auth/register");
+  }
+  else {
+    res.redirect("/games");
+  }
 });
 
 app.use("/games", games_routes)

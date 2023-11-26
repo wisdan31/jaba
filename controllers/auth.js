@@ -8,13 +8,10 @@ const showAuthPage = (req, res) => {
 
 const createNewUser = async (req, res) => {
   const username = req.body.username;
-  console.log(username);
   let user = await User.findOne({ username: username });
   if (user != null) {
     return res.status(400).send('Such user already exists');
   }
-  console.log(req.body.username);
-  console.log(req.body.password)
   const password = await bcrypt.hash(req.body.password, 10);
   user = new User({
     username: username,
@@ -22,9 +19,10 @@ const createNewUser = async (req, res) => {
   });
   try {
     await user.save();
-    res.sendStatus(302);
+    res.status(201).send('User created successfully');
   }
   catch (err) {
+    console.log(err);
     res.sendStatus(500);
   }
 }
