@@ -8,7 +8,7 @@ const port = 3000;
 
 const {verifyToken} = require("./services/jwt.js");
 
-const games_routes = require("./routes/games.js");
+const games_routes = require("./routes/games.js");  
 const auth_routes = require("./routes/auth.js");
 
 

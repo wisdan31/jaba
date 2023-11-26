@@ -33,16 +33,16 @@ const loginUser = async (req, res) => {
 
   let user = await User.findOne({ username: username });
   if (user == null) {
-    return res.sendStatus(401);
+    return res.status(401).send("No such user");
   }
 
   try {
     if (!(await bcrypt.compare(password, user.password))) {
-      res.sendStatus(401);
+      return res.status(401).send("Wrong password");
     }
     const accessToken = generateAccessToken(user);
     res.cookie('token', accessToken, { httpOnly: true });
-    res.sendStatus(200);
+    return res.status(200).send("You are now logged in");
   } catch (err) {
     console.log(err);
     res.sendStatus(500);

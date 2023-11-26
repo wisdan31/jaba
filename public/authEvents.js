@@ -12,10 +12,17 @@ document.getElementById("loginForm").addEventListener("submit", async (event) =>
   
     const result = await response.text();
   
-    if (response.status === 200) {
-        alert(`${result} You are now logged in.`);
+    switch (response.status) {
+      case 200:
+        alert(result);
         window.location.href = "/games";
-      }      
+        break;
+      case 401:
+        alert(result);
+        break;
+      default:
+        alert("Something went wrong.");
+    }     
   });
 
 document.getElementById("registerForm").addEventListener("submit", async (event) => {
@@ -32,9 +39,16 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
   
     const result = await response.text();
   
-    if (response.status === 201) {
-        alert(`${result} You can now log in.`);
-      location.reload();
+    switch (response.status) {
+      case 201:
+        alert(`${result}. You can now log in.`);
+        location.reload();
+        break;
+      case 400:
+        alert(result);
+        break;
+      default:
+        alert("Something went wrong.");
     }
   });
   
