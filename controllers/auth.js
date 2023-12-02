@@ -49,8 +49,14 @@ const loginUser = async (req, res) => {
   }
 }
 
+const logoutUser = async (req, res) => {
+  res.clearCookie('token');
+  res.status(200).send('You are now logged out');
+}
+
 module.exports = {
   showAuthPage,
   createNewUser,
-  loginUser
+  loginUser,
+  logoutUser
 }

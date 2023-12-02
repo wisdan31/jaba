@@ -9,18 +9,26 @@ const {
     showAuthPage,
     createNewUser,
     loginUser,
+    logoutUser
 } = require("../controllers/auth.js");
 
 const {authCheck} = require("../services/jwt.js");
 
 const User = require("../models/user.js");
 
-router.use(authCheck);
+router.use((req, res, next) => {
+    if (req.path == "/logout") {
+        return next();
+    }
+    authCheck(req, res, next);
+});
 
 router.get("/register", showAuthPage);
 
 router.post("/register", createNewUser);
 
 router.post("/login", loginUser);
+
+router.post("/logout", logoutUser);
 
 module.exports = router;
