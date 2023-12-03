@@ -1,3 +1,44 @@
+document.addEventListener('DOMContentLoaded', function () {
+  const moreButtons = document.querySelectorAll('.moreButton');
+  const detailedCardOverlay = document.getElementById('detailedCardOverlay');
+  const closeDetailedCard = document.getElementById('closeDetailedCard');
+
+  moreButtons.forEach(button => {
+    button.addEventListener('click', function () {
+      const tableRow = this.closest('tr');
+      const title = tableRow.querySelector('td:nth-child(1)').innerText;
+      const developer = tableRow.querySelector('td:nth-child(2)').innerText;
+      const year = tableRow.querySelector('td:nth-child(3)').innerText;
+      const genre = tableRow.querySelector('td:nth-child(4)').innerText;
+      const status = tableRow.querySelector('td:nth-child(5)').innerText;
+      const score = tableRow.querySelector('td:nth-child(6)').innerText;
+      const time = tableRow.querySelector('td:nth-child(7)').innerText;
+      const entryID = this.getAttribute('data-id');
+
+      document.getElementById('detailedCardTitle').innerText = title;
+      document.getElementById('detailedCardDeveloper').innerText = `Developer: ${developer}`;
+      document.getElementById('detailedCardYear').innerText = `Year: ${year}`;
+      document.getElementById('detailedCardGenre').innerText = `Genre: ${genre}`;
+      document.getElementById('detailedCardStatus').innerText = `Status: ${status}`;
+      document.getElementById('detailedCardScore').innerText = `Your Score: ${score}`;
+      document.getElementById('detailedCardTime').innerText = `Time Played: ${time}`;
+
+      detailedCardOverlay.style.display = 'block';
+      document.getElementById('deleteButton').setAttribute('data-id', entryID);
+    });
+  });
+
+  closeDetailedCard.addEventListener('click', function () {
+    detailedCardOverlay.style.display = 'none';
+  });
+
+  const deleteButton = document.getElementById('deleteButton');
+  deleteButton.addEventListener('click', function () {
+    const entryID = this.getAttribute('data-id');
+    console.log('Delete button clicked for entry with ID:', entryID);
+  });
+});
+
 function addEntry() {
   console.log("Adding entry...");
   const entryTitle = document.getElementById("newEntryTitle").value;

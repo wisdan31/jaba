@@ -1,29 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
+  <style>
+    body {
+      background-color: #101119;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    form {
+      background-color: #2a2d43;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      width: 45%;
+      display: block;
+      margin: 20px auto;
+      text-align: left; /* Align text to the left */
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    form input {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    form input[type="submit"] {
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      width: auto;
+    }
+
+    form input[type="submit"]:hover {
+      background-color: #218838;
+    }
+  </style>
+  <title>Login and Register Page</title>
 </head>
+
 <body>
-  <h2>Login</h2>
   <form id="loginForm">
-    <label for="username">Username:</label>
-    <input type="text" id="loginUsername" name="username" required><br><br>
-    <label for="password">Password:</label>
-    <input type="password" id="loginPassword" name="password" required><br><br>
+    <h2>Login</h2>
+    <label for="loginUsername">Username:</label>
+    <input type="text" id="loginUsername" name="username" required>
+    <label for="loginPassword">Password:</label>
+    <input type="password" id="loginPassword" name="password" required>
     <input type="submit" value="Login">
   </form>
-  <br>
-  <h2>Register</h2>
+
   <form id="registerForm">
-    <label for="username">Username:</label>
-    <input type="text" id="registerUsername" name="username" required><br><br>
-    <label for="password">Password:</label>
-    <input type="password" id="registerPassword" name="password" required><br><br>
+    <h2>Register</h2>
+    <label for="registerUsername">Username:</label>
+    <input type="text" id="registerUsername" name="username" required>
+    <label for="registerPassword">Password:</label>
+    <input type="password" id="registerPassword" name="password" required>
     <input type="submit" value="Register">
   </form>
 
   <script src="..\authEvents.js"></script>
 </body>
+
 </html>
