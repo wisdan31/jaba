@@ -21,4 +21,5 @@ const gameSchema = new mongoose.Schema({
   });
 
 const Game = mongoose.model('media', gameSchema); // Creating game model
-module.exports = Game;
+const Movie = mongoose.model('movie', movieSchema); // Creating movie model
+module.exports = {Game, Movie}; 

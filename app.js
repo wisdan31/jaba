@@ -8,14 +8,14 @@ const port = 3000;
 
 const {verifyToken} = require("./services/jwt.js");
 
-const games_routes = require("./routes/games.js");  
+const media_routes = require("./routes/media.js");  
 const auth_routes = require("./routes/auth.js");
 
 
 require('dotenv').config();
 
 
-const Game = require("./models/game.js");
+const {Game, Movie} = require("./models/media.js");
 
 mongoose.connect("mongodb://localhost:27017/backlog", {
   useNewUrlParser: true,
@@ -37,11 +37,11 @@ app.get("/", async (req, res) => {
     res.redirect("/auth/register");
   }
   else {
-    res.redirect("/games");
+    res.redirect("/media/games");
   }
 });
 
-app.use("/games", games_routes)
+app.use("/media", media_routes)
 
 app.use("/auth", auth_routes)
 

@@ -13,27 +13,24 @@
       <h1>jaba — just another backlog app</h1>
       <nav>
         <ul>
-          <li><a href="/media/games">Home</a></li>
-          <li><a href="/media/movies">Movies</a></li>
-          <li><a href="/media/books">Books</a></li>
+          <li><a href="/games">Home</a></li>
+          <li><a href="/movies">Movies</a></li>
+          <li><a href="/books">Books</a></li>
         </ul>
       </nav>
     </header>
     <button id="logoutButton">Logout</button>
   </div>
-  
-  
 
   <table>
     <thead>
       <tr>
         <th>Title</th>
-        <th>Developer</th>
+        <th>Director</th>
         <th>Year</th>
         <th>Genre</th>
         <th>Status</th>
         <th>Your score</th>
-        <th>Time played</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -41,7 +38,7 @@
       <% entries.forEach(entry => { %>
         <tr>
           <td><%= entry.title %></td>
-          <td><%= entry.developer %></td>
+          <td><%= entry.director %></td>
           <td><%= entry.year %></td>
           <td><%= entry.genre %></td>
           <td><%= entry.status %></td>
@@ -52,15 +49,6 @@
               <%= entry.score + '/5' %>
             <% } %>
           </td>
-          
-          <td>
-            <% if (entry.time === 0) { %>
-              <%= "—" %>
-            <% } else { %>
-              <%= parseInt(entry.time / 60) %>h <%= entry.time % 60 %>m
-            <% } %>
-          </td>
-          
           <td>
             <button class="moreButton" data-id="<%= entry._id %>">More</button>
           </td>
@@ -68,7 +56,7 @@
       <% }); %>
       <tr>
         <td><input type="text" id="newEntryTitle"></td>
-        <td><input type="text" id="newEntryDeveloper"></td>
+        <td><input type="text" id="newEntryDirector"></td>
         <td>
           <select id="newEntryYear">
             <% for (let i = new Date().getFullYear(); i >= 1950; i--) { %>
@@ -79,12 +67,10 @@
         <td><input type="text" id="newEntryGenre"></td>
         <td>
           <select id="newEntryStatus">
-            <option value="✅ Completed">✅ Completed</option>
-            <option value="❌ Abandoned">❌ Abandoned</option>
-            <option value="⚠️ Completed, but...">⚠️ Completed, but...</option>
-            <option value="⭐ Next in line">⭐ Next in line</option>
-            <option value="⌛ Will play sometime">⌛ Will play sometime</option>
-            <option value="🔥 Playing right now">🔥 Playing right now</option>
+            <option value="✅ Watched">✅ Watched</option>
+            <option value="❌ Not watched">❌ Not watched</option>
+            <option value="⚠️ On hold">⚠️ On hold</option>
+            <option value="⭐ Favorite">⭐ Favorite</option>
           </select>
         </td>
         <td>
@@ -97,8 +83,7 @@
             <option value=0>No Rating Yet</option>
           </select>
         </td>
-        <td><input type="number" id="newEntryTime" placeholder="In minutes"></td>
-        <td><button id="addButton">Add</button></td>
+        <td><button id="addButton" onclick="requestImage('moviesTab')">Add</button></td>
       </tr>
     </tbody>
   </table>
@@ -106,12 +91,11 @@
   <div id="detailedCardOverlay">
     <div id="detailedCard">
       <h2 id="detailedCardTitle"></h2>
-      <p id="detailedCardDeveloper"></p>
+      <p id="detailedCardDirector"></p>
       <p id="detailedCardYear"></p>
       <p id="detailedCardGenre"></p>
       <p id="detailedCardStatus"></p>
       <p id="detailedCardScore"></p>
-      <p id="detailedCardTime"></p>
       <button class="deleteButton" id="deleteButton">Delete</button>
       <button id="closeDetailedCard">Close</button>
     </div>

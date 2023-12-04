@@ -120,3 +120,51 @@ input {
   margin-top: 10px;
   padding: 8px;
 }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #20232a;
+    padding: 10px;
+  }
+
+  .header-container header {
+    margin: 0;
+  }
+
+  .header-container nav {
+    display: flex;
+  }
+
+  .header-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+
+  .header-container li {
+    margin: 0 10px;
+  }
+
+  .header-container a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .header-container a:hover {
+    text-decoration: underline;
+  }
+
+  #logoutButton {
+    padding: 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  #logoutButton:hover {
+    background-color: #c82333;
+  }

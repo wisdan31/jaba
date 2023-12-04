@@ -6,18 +6,22 @@ router.use(express.json());
 const {
     createGame,
     deleteGame,
-    showGames
-} = require("../controllers/games.js");
+    showGames,
+    showMovies
+} = require("../controllers/media.js");
 
 const { verifyToken } = require("../services/jwt.js");
 
-const Game = require("../models/game.js");
+const {Game, Movie} = require("../models/media.js");
+const e = require("express");
 
-router.get("/", verifyToken, showGames)
+router.get("/games", verifyToken, showGames)
 
 router.post("/add", createGame);
 
 router.delete("/delete/:id", deleteGame);
+
+router.get("/movies", verifyToken, showMovies);
 
 module.exports = router;
 

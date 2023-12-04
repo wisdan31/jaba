@@ -24,25 +24,63 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('detailedCardTime').innerText = `Time Played: ${time}`;
 
       detailedCardOverlay.style.display = 'block';
-      document.getElementById('deleteButton').setAttribute('data-id', entryID);
+      const deleteButton = document.querySelector('.deleteButton');
+      deleteButton.setAttribute('data-id', entryID);
+      deleteButton.addEventListener('click', () => deleteEntry(entryID));
+
+      const editButton = document.querySelector('.editButton');
+      editButton.setAttribute('data-id', entryID);
+      editButton.addEventListener('click', () => editEntry(entryID));
     });
   });
+
+  const editEntry = (entryID) => {
+    const title = document.getElementById('detailedCardTitle').innerText;
+    const developer = document.getElementById('detailedCardDeveloper').innerText;
+    const year = document.getElementById('detailedCardYear').innerText;
+    const genre = document.getElementById('detailedCardGenre').innerText;
+    const status = document.getElementById('detailedCardStatus').innerText;
+    const score = document.getElementById('detailedCardScore').innerText;
+    const time = document.getElementById('detailedCardTime').innerText;
+
+    const newEntry = {
+      title: title,
+      developer: developer,
+      year: year,
+      genre: genre,
+      status: status,
+      score: score,
+      time: time,
+    };
+
+    fetch("/games/edit/" + entryID, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newEntry),
+    }).then(() => {
+      alert("Entry edited!");
+      location.reload();
+    });
+  }
 
   closeDetailedCard.addEventListener('click', function () {
     detailedCardOverlay.style.display = 'none';
   });
 
-  const deleteButton = document.getElementById('deleteButton');
-  deleteButton.addEventListener('click', function () {
-    const entryID = this.getAttribute('data-id');
-    console.log('Delete button clicked for entry with ID:', entryID);
+  document.getElementById("addButton").addEventListener("click", addEntry);
+  document.getElementById("logoutButton").addEventListener("click", () => {
+    fetch("/auth/logout", {
+      method: "POST",
+    }).then(() => {
+      alert("You are now logged out");
+      window.location.href = "/auth/register";
+    });
   });
 });
 
 function addEntry() {
-  console.log("Adding entry...");
   const entryTitle = document.getElementById("newEntryTitle").value;
-  const entryDelevoper = document.getElementById("newEntryDeveloper").value;
+  const entryDeveloper = document.getElementById("newEntryDeveloper").value;
   const entryYear = document.getElementById("newEntryYear").value;
   const entryGenre = document.getElementById("newEntryGenre").value;
   const entryStatus = document.getElementById("newEntryStatus").value;
@@ -51,7 +89,7 @@ function addEntry() {
 
   const newEntry = {
     title: entryTitle,
-    developer: entryDelevoper,
+    developer: entryDeveloper,
     year: entryYear,
     genre: entryGenre,
     status: entryStatus,
@@ -59,7 +97,7 @@ function addEntry() {
     time: entryTime,
   };
 
-  fetch("/games/add", {
+  fetch("/media/add", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newEntry),
@@ -69,11 +107,9 @@ function addEntry() {
   });
 }
 
-function deleteEntry(button) {
-  const entryID = button.getAttribute("data-id");
-
+function deleteEntry(entryID) {
   try {
-    fetch("/games/delete/" + entryID, {
+    fetch("/media/delete/" + entryID, {
       method: "DELETE",
     }).then(() => {
       alert("Entry deleted!");
@@ -83,19 +119,3 @@ function deleteEntry(button) {
     console.error(error);
   }
 }
-
-const deleteButtons = document.getElementsByClassName("deleteButton");
-Array.from(deleteButtons).forEach((button) => {
-  button.addEventListener("click", () => deleteEntry(button));
-});
-
-document.getElementById("addButton").addEventListener("click", addEntry);
-
-document.getElementById("logoutButton").addEventListener("click", () => {
-    fetch("/auth/logout", {
-        method: "POST",
-    }).then(() => {
-        alert("You are now logged out");
-        window.location.href = "/auth/register";
-    });
-})
