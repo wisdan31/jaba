@@ -15,7 +15,7 @@ document.getElementById("loginForm").addEventListener("submit", async (event) =>
     switch (response.status) {
       case 200:
         alert(result);
-        window.location.href = "/games";
+        window.location.href = "/media/games";
         break;
       case 401:
         alert(result);
