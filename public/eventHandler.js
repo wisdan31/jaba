@@ -112,7 +112,6 @@ function deleteEntry(entryID) {
     fetch("/media/delete/" + entryID, {
       method: "DELETE",
     }).then(() => {
-      alert("Entry deleted!");
       location.reload();
     });
   } catch (error) {
