@@ -34,35 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  const editEntry = (entryID) => {
-    const title = document.getElementById('detailedCardTitle').innerText;
-    const developer = document.getElementById('detailedCardDeveloper').innerText;
-    const year = document.getElementById('detailedCardYear').innerText;
-    const genre = document.getElementById('detailedCardGenre').innerText;
-    const status = document.getElementById('detailedCardStatus').innerText;
-    const score = document.getElementById('detailedCardScore').innerText;
-    const time = document.getElementById('detailedCardTime').innerText;
-
-    const newEntry = {
-      title: title,
-      developer: developer,
-      year: year,
-      genre: genre,
-      status: status,
-      score: score,
-      time: time,
-    };
-
-    fetch("/games/edit/" + entryID, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newEntry),
-    }).then(() => {
-      alert("Entry edited!");
-      location.reload();
-    });
-  }
-
   closeDetailedCard.addEventListener('click', function () {
     detailedCardOverlay.style.display = 'none';
   });
@@ -106,6 +77,34 @@ function addEntry() {
     location.reload();
   });
 }
+
+function addMovie() {
+  const movieTitle = document.getElementById("newMovieTitle").value;
+  const movieDirector = document.getElementById("newMovieDirector").value;
+  const movieYear = document.getElementById("newMovieYear").value;
+  const movieGenre = document.getElementById("newMovieGenre").value;
+  const movieStatus = document.getElementById("newMovieStatus").value;
+  const movieScore = document.getElementById("newMovieScore").value;
+
+  const newMovie = {
+    title: movieTitle,
+    director: movieDirector,
+    year: movieYear,
+    genre: movieGenre,
+    status: movieStatus,
+    score: movieScore,
+  };
+
+  fetch("/media/addMovie", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newMovie),
+  }).then(() => {
+    alert("New movie added!");
+    location.reload();
+  });
+}
+
 
 function deleteEntry(entryID) {
   try {

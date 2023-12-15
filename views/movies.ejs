@@ -1,107 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../styles.css">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
 
-<body>
-  <div class="header-container">
-    <header>
-      <h1>jaba — just another backlog app</h1>
-      <nav>
-        <ul>
-          <li><a href="/media/games">Games</a></li>
-          <li><a href="/media/movies">Movies</a></li>
-          <li><a href="/media/books">Books</a></li>
-        </ul>
-      </nav>
-    </header>
-    <button id="logoutButton">Logout</button>
-  </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Director</th>
-        <th>Year</th>
-        <th>Genre</th>
-        <th>Status</th>
-        <th>Your score</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% entries.forEach(entry => { %>
-        <tr>
-          <td><%= entry.title %></td>
-          <td><%= entry.director %></td>
-          <td><%= entry.year %></td>
-          <td><%= entry.genre %></td>
-          <td><%= entry.status %></td>
-          <td>
-            <% if (entry.score === 0) { %>
-              <%= "—" %>
-            <% } else { %>
-              <%= entry.score + '/5' %>
-            <% } %>
-          </td>
-          <td>
-            <button class="moreButton" data-id="<%= entry._id %>">More</button>
-          </td>
-        </tr>
-      <% }); %>
-      <tr>
-        <td><input type="text" id="newEntryTitle"></td>
-        <td><input type="text" id="newEntryDirector"></td>
-        <td>
-          <select id="newEntryYear">
-            <% for (let i = new Date().getFullYear(); i >= 1950; i--) { %>
-              <option value="<%= i %>"><%= i %></option>
-            <% } %>
-          </select>
-        </td>
-        <td><input type="text" id="newEntryGenre"></td>
-        <td>
-          <select id="newEntryStatus">
-            <option value="✅ Watched">✅ Watched</option>
-            <option value="❌ Not watched">❌ Not watched</option>
-            <option value="⚠️ On hold">⚠️ On hold</option>
-            <option value="⭐ Favorite">⭐ Favorite</option>
-          </select>
-        </td>
-        <td>
-          <select id="newEntryScore">
-            <option value=1>1/5</option>
-            <option value=2>2/5</option>
-            <option value=3>3/5</option>
-            <option value=4>4/5</option>
-            <option value=5>5/5</option>
-            <option value=0>No Rating Yet</option>
-          </select>
-        </td>
-        <td><button id="addButton" onclick="requestImage('moviesTab')">Add</button></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div id="detailedCardOverlay">
-    <div id="detailedCard">
-      <h2 id="detailedCardTitle"></h2>
-      <p id="detailedCardDirector"></p>
-      <p id="detailedCardYear"></p>
-      <p id="detailedCardGenre"></p>
-      <p id="detailedCardStatus"></p>
-      <p id="detailedCardScore"></p>
-      <button class="deleteButton" id="deleteButton">Delete</button>
-      <button id="closeDetailedCard">Close</button>
+  <body>
+    <div class="header-container">
+      <header>
+        <h1>jaba — just another backlog app</h1>
+        <nav>
+          <ul>
+            <li><a href="/media/games">Games</a></li>
+            <li><a href="/media/movies">Movies</a></li>
+            <li><a href="/media/books">Books</a></li>
+          </ul>
+        </nav>
+      </header>
+      <button id="logoutButton">Logout</button>
     </div>
-  </div>
 
-  <script src="../eventHandler.js"></script>
-</body>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Director</th>
+          <th>Year</th>
+          <th>Genre</th>
+          <th>Status</th>
+          <th>Your score</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% entries.forEach(entry => { %>
+          <tr>
+            <td><%= entry.title %></td>
+            <td><%= entry.director %></td>
+            <td><%= entry.year %></td>
+            <td><%= entry.genre %></td>
+            <td><%= entry.status %></td>
+            <td>
+              <% if (entry.score === 0) { %>
+                <%= "—" %>
+              <% } else { %>
+                <%= entry.score + '/5' %>
+              <% } %>
+            </td>
+            <td>
+              <button class="moreButton" data-id="<%= entry._id %>">More</button>
+            </td>
+          </tr>
+        <% }); %>
+        <tr>
+          <td><input type="text" id="newEntryTitle"></td>
+          <td><input type="text" id="newEntryDirector"></td>
+          <td>
+            <select id="newEntryYear">
+              <% for (let i = new Date().getFullYear(); i >= 1950; i--) { %>
+                <option value="<%= i %>"><%= i %></option>
+              <% } %>
+            </select>
+          </td>
+          <td><input type="text" id="newEntryGenre"></td>
+          <td>
+            <select id="newEntryStatus">
+              <option value="✅ Watched">✅ Watched</option>
+              <option value="❌ Not watched">❌ Not watched</option>
+              <option value="⚠️ On hold">⚠️ On hold</option>
+              <option value="⭐ Favorite">⭐ Favorite</option>
+            </select>
+          </td>
+          <td>
+            <select id="newEntryScore">
+              <option value=1>1/5</option>
+              <option value=2>2/5</option>
+              <option value=3>3/5</option>
+              <option value=4>4/5</option>
+              <option value=5>5/5</option>
+              <option value=0>No Rating Yet</option>
+            </select>
+          </td>
+          <td><button id="addButton">Add</button></td>
+        </tr>
+      </tbody>
+    </table>
 
-</html>
+    <div id="detailedCardOverlay">
+      <div id="detailedCard">
+        <h2 id="detailedCardTitle"></h2>
+        <p id="detailedCardDirector"></p>
+        <p id="detailedCardYear"></p>
+        <p id="detailedCardGenre"></p>
+        <p id="detailedCardStatus"></p>
+        <p id="detailedCardScore"></p>
+        <button class="deleteButton" id="deleteButton">Delete</button>
+        <button id="closeDetailedCard">Close</button>
+      </div>
+    </div>
+
+    <script src="../movieEventHandler.js"></script>
+  </body>
+
+  </html>
