@@ -12,9 +12,9 @@ const {
     logoutUser
 } = require("../controllers/auth.js");
 
-const {authCheck} = require("../services/jwt.js");
-
 const User = require("../models/user.js");
+
+const {authCheck} = require("../services/jwt.js");
 
 router.use((req, res, next) => {
     if (req.path == "/logout") {
