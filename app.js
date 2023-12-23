@@ -17,19 +17,28 @@ require('dotenv').config();
 
 const {Game, Movie} = require("./models/media.js");
 
-mongoose.connect("mongodb://localhost:27017/backlog", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}); // Making a connection with the database
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology:true,
+    });
+    console.log("MongoDB connected");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+connectDB().then(() => {
+  app.listen(port, () => {
+    console.log("Server is running on port " + port);
+  });
+})
 
 app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
 app.set("view engine", "ejs");
-
-app.listen(port, () => {
-  console.log("Server is running on port " + port);
-});
 
 app.get("/", async (req, res) => {
   const token = req.cookies.token;
@@ -44,5 +53,3 @@ app.get("/", async (req, res) => {
 app.use("/media", media_routes)
 
 app.use("/auth", auth_routes)
-
-
