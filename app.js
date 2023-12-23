@@ -44,5 +44,3 @@ app.get("/", async (req, res) => {
 app.use("/media", media_routes)
 
 app.use("/auth", auth_routes)
-
-
